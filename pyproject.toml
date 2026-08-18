@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "siemlens"
+version = "0.1.0"
+description = "Two-stage security log triage: a Random Forest filters, a language model explains."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+# Name only, deliberately no email address.  PyPI publishes author metadata
+# permanently and mirrors it everywhere; an address put here can never be
+# withdrawn.  Contact goes through the project URLs below instead.
+authors = [
+    { name = "Akhbar Tilek Uulu" },
+]
+maintainers = [
+    { name = "Akhbar Tilek Uulu" },
+]
+keywords = [
+    "security",
+    "siem",
+    "soc",
+    "log-analysis",
+    "threat-detection",
+    "machine-learning",
+    "random-forest",
+    "llm",
+    "prompt-injection",
+    "security-automation",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: System :: Logging",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = [
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+
+[project.urls]
+Homepage = "https://akbar-tilek-uulu.github.io/"
+Source = "https://github.com/akbar-tilek-uulu/siemlens"
+Issues = "https://github.com/akbar-tilek-uulu/siemlens/issues"
+
+[project.scripts]
+siemlens = "siemlens.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+siemlens = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]

@@ -1,0 +1,45 @@
+# Zenodo reads this file when a GitHub release is archived, and uses it to fill
+# the DOI record's author metadata. Keeping the name here identical to the name
+# used everywhere else is what makes the DOI record resolve to the same person
+# as the repository, the package and the personal site.
+cff-version: 1.2.0
+title: "siemlens: two-stage security log triage with Random Forest and an LLM"
+message: "If you use this software, please cite it using these metadata."
+type: software
+authors:
+  # given/family split is fixed deliberately: "uulu" means "son of" and is not a
+  # surname, so parsers that guess produce "Akbar Tilek"/"Uulu" and split the
+  # author into separate entities across DataCite, OpenAlex and Crossref.
+  # Keep this exact split everywhere: ORCID, pyproject.toml, .zenodo.json.
+  - given-names: Akhbar
+    family-names: Tilek Uulu
+    alias: "Тилек Уулу Ахбар (Тилек Ахбар, Tilek Akbar)"
+    city: Almaty
+    country: KZ
+    # Add your ORCID once registered, then uncomment:
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+repository-code: "https://github.com/akbar-tilek-uulu/siemlens"
+url: "https://akbar-tilek-uulu.github.io/"
+abstract: >-
+  A reference implementation of two-stage security event triage. A Random
+  Forest classifier scores normalised log events on interpretable, leakage-free
+  streaming features and decides what a human should look at. Only the events
+  that survive that filter reach the second stage, where a language model
+  summarises and classifies them under a closed taxonomy and a validated output
+  schema. The second stage treats log content as attacker-controlled input:
+  fields are allow-listed, sanitised and delimited, the response must satisfy a
+  schema, and every entity the model names is checked against the source events
+  before it is shown. Includes a deterministic synthetic log generator so the
+  whole pipeline runs with no real telemetry and no API key.
+keywords:
+  - security information and event management
+  - security operations centre
+  - log analysis
+  - threat detection
+  - machine learning
+  - random forest
+  - large language models
+  - prompt injection
+license: MIT
+version: 0.1.0
+date-released: "2026-08-17"
